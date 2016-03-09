@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/main.qml</file>
+        <file>qml/index.qml</file>
+        <file>qml/status.qml</file>
+        <file>qml/Controls/Page.qml</file>
+        <file>qml/Styles/AppStyle.qml</file>
+        <file>qml/Controls/Block.qml</file>
+        <file>qml/Styles/qmldir</file>
+        <file>qml/Controls/Label.qml</file>
+        <file>qml/Controls/ListItemDelegate.qml</file>
+        <file>qml/Controls/CounterTile.qml</file>
+        <file>qml/Styles/ProgressBarStyle.qml</file>
+        <file>qml/Controls/ProgressBar.qml</file>
+    </qresource>
+</RCC>
