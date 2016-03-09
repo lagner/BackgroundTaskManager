@@ -98,11 +98,11 @@ bool BackgroundTask::processStream(std::ifstream &stream, WordCounter& counter)
 
         ++lines;
 
-        if (QThread::currentThread()->isInterruptionRequested())
-            return false;
-
         // prevent event flood
         if (timer.hasExpired(TIMEOUT_MSEC)) {
+            if (QThread::currentThread()->isInterruptionRequested())
+                return false;
+
             notifyChanged();
             timer.restart();
         }
