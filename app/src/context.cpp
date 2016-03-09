@@ -1,9 +1,7 @@
 #include "context.h"
 #include <QDebug>
 #include <QThread>
-#include <QCoreApplication>
 #include <QUrl>
-#include <QHash>
 #include "backgroundtask.h"
 
 
@@ -90,6 +88,9 @@ void Context::runFileProcessing(const QUrl& filepath)
 
     // finish, release resources
     connect(m_task, &BackgroundTask::finished,
+            this, &Context::onTaskFinished);
+
+    connect(m_task, &BackgroundTask::finished,
             m_thread, &QThread::quit);
 
     connect(m_thread, &QThread::finished,
@@ -97,9 +98,6 @@ void Context::runFileProcessing(const QUrl& filepath)
 
     connect(m_thread, &QThread::finished,
             m_thread, &QThread::deleteLater);
-
-    connect(m_task, &BackgroundTask::finished,
-            this, &Context::onTaskFinished);
 
     m_thread->start();
 }
