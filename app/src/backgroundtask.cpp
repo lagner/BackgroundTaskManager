@@ -17,7 +17,8 @@ std::streampos getRemainingSize(std::ifstream& stream) {
 
     auto last = stream.tellg();
     stream.seekg(0, stream.end);
-    auto size = stream.tellg();
+
+    auto size = stream.tellg() - last;
     stream.seekg(last, stream.beg);
 
     return size;
