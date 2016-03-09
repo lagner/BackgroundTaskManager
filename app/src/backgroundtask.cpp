@@ -83,8 +83,13 @@ bool BackgroundTask::processStream(std::ifstream &stream, WordCounter& counter)
             emit uniqueWordsChanged(uniqueWords);
         }
 
-        int progress = double(stream.tellg()) / remain * 100;
-        emit progressChanged(progress);
+        double pos = stream.tellg();
+        if (pos == -1) {
+            if (!stream.eof())
+                return;
+            pos = remain;
+        }
+        emit progressChanged(pos / remain * 100);
     };
 
     while (std::getline(stream, line)) {
